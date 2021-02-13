@@ -2,6 +2,7 @@ import React from "react";
 import beach from "../images/beach.mp4";
 import trees from "../images/palmtrees.mp4";
 import sunset from "../images/sunset.mp4";
+import coastline from "../images/island.mp4";
 
 import styled from "styled-components";
 
@@ -10,6 +11,7 @@ export default function BackgroundVideo({ background }) {
     if (string === "beach") return beach;
     if (string === "trees") return trees;
     if (string === "sunset") return sunset;
+    if (string === "coastline") return coastline;
   };
 
   return (

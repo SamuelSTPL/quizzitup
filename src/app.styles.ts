@@ -5,13 +5,12 @@ html{
     height: 100%;
 }
 body{
-    /* background-color: dodgerblue; */
     margin: 0;
     padding: 0 20px;
     display: flex;
     justify-content: center;
-    /* width: 100%;
-    height: 100%; */
+    align-items: center;
+    height: 100%; 
   }
   
   *{
