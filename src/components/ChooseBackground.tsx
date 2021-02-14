@@ -11,7 +11,7 @@ const ChooseBackground: React.FC<Props> = ({ setBackground }) => {
       <p>Change the background:</p>
       <Overlay />
       <ButtonsContainer>
-        <Button onClick={() => setBackground("beach")}>Beach</Button>
+        <button onClick={() => setBackground("beach")}>Beach</button>
         <button onClick={() => setBackground("trees")}>Palm trees</button>
         <button onClick={() => setBackground("sunset")}>Sunset</button>
         <button onClick={() => setBackground("coastline")}>Coastline</button>
@@ -68,8 +68,6 @@ const ButtonsContainer = styled.div`
     cursor: pointer;
     width: 90px;
     margin: 5px;
-    /* text-shadow: -1px -1px 1px rgba(255, 255, 255, 0.1),
-      1px 1px 1px rgba(0, 0, 0, 0.5), 2px 2px 2px rgba(0, 0, 0, 0); */
     background: -webkit-linear-gradient(
       90deg,
       rgba(0, 0, 0, 1) 0%,
@@ -84,7 +82,5 @@ const ButtonsContainer = styled.div`
     }
   }
 `;
-
-const Button = styled.button``;
 
 export default ChooseBackground;

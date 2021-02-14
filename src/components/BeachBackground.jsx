@@ -29,5 +29,5 @@ const Video = styled.video`
   max-height: 100vh;
   object-fit: cover;
   position: absolute;
-  z-index: -1;
+  z-index: -2;
 `;

@@ -11,6 +11,7 @@ body{
     justify-content: center;
     align-items: center;
     height: 100%; 
+    position: relative;
   }
   
   *{
@@ -24,6 +25,9 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 10px;
+  position: relative;
+  padding: 50px;
 
   > p {
     color: white;
@@ -31,8 +35,24 @@ export const Wrapper = styled.div`
 
   .score {
     color: whitesmoke;
-    font-size: 2rem;
-    margin: 0;
+    font-size: 3.5rem;
+    font-family: Fascinate Inline, Haettenschweiler, "Arial Narrow Bold",
+      sans-serif;
+    background-image: linear-gradient(180deg, white, #87f1ff);
+    background-size: 100%auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+    filter: drop-shadow(2px 2px #0085a3);
+    font-weight: 400;
+    text-align: center;
+    margin: auto;
+  }
+
+  .score-span {
+    font-size: 4.5rem;
   }
 
   h1 {
@@ -49,7 +69,7 @@ export const Wrapper = styled.div`
     font-size: 70px;
     font-weight: 400;
     text-align: center;
-    margin: 20px;
+    margin: -100px 20px 0 20px;
   }
 
   .start,
