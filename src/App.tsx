@@ -4,6 +4,8 @@ import { fetchQuizzQuestions } from "./Api";
 
 import BackgroundVideo from "./components/BeachBackground";
 import ChooseBackground from "./components/ChooseBackground";
+import PageError from "./components/PageError";
+import Categories from "./components/Categories";
 
 // types
 import { QuestionState, Difficulty } from "./Api";
@@ -27,24 +29,31 @@ const App = () => {
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
   const [background, setBackground] = useState("beach");
+  const [category, setCategory] = useState(9);
+  const [error, setError] = useState(false);
 
-  console.log(questions);
+  // console.log(category);
 
   const startTrivia = async () => {
-    // TODO Add error handling//////////////////////////////////////////////
-    setLoading(true);
-    setGameOver(false);
+    try {
+      setLoading(true);
+      setGameOver(false);
 
-    // Fetch new questions from the API
-    const newQuestions = await fetchQuizzQuestions(
-      TOTAL_QUESTIONS,
-      Difficulty.EASY
-    );
-    setQuestions(newQuestions);
-    setScore(0);
-    setNumber(0);
-    setUserAsnwer([]);
-    setLoading(false);
+      // Fetch new questions from the API
+      const newQuestions = await fetchQuizzQuestions(
+        TOTAL_QUESTIONS,
+        Difficulty.EASY,
+        category
+      );
+      setQuestions(newQuestions);
+      setScore(0);
+      setNumber(0);
+      setUserAsnwer([]);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+      setError(true);
+    }
   };
 
   const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -74,14 +83,24 @@ const App = () => {
   return (
     <>
       <GlobalStyle />
+      <ChooseBackground setBackground={setBackground} />
+      <BackgroundVideo background={background} />
+      {error && <PageError error={error} />}
       <Wrapper>
         <h1>Quizz It Up</h1>
         {gameOver || userAnswer.length === TOTAL_QUESTIONS ? (
-          <button className="start" onClick={() => startTrivia()}>
-            Let's Go!
-          </button>
+          <>
+            <Categories setCategory={setCategory} />
+            <button className="start" onClick={() => startTrivia()}>
+              Let's Go!
+            </button>{" "}
+          </>
         ) : null}
-        {!gameOver ? <p className="score">Score:{score}</p> : null}
+        {!gameOver ? (
+          <p className="score">
+            Score <span className="score-span">{score}</span>
+          </p>
+        ) : null}
         {loading && <p>Loading...</p>}
         {!loading && !gameOver && (
           <QuestionsCard
@@ -101,8 +120,6 @@ const App = () => {
             Next
           </button>
         ) : null}
-        <ChooseBackground setBackground={setBackground} />
-        <BackgroundVideo background={background} />
       </Wrapper>
     </>
   );
